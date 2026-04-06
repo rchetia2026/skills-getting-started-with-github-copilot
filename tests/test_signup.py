@@ -7,7 +7,7 @@ def test_signup_for_activity_success(client):
     """Test successful registration for an activity"""
     # Arrange
     activity_name = "Chess Club"
-    new_student_email = "newstudent@mergington.edu"
+    new_student_email = "newstudent_success@mergington.edu"
     
     # Act
     response = client.post(
@@ -27,7 +27,7 @@ def test_signup_adds_participant_to_activity(client):
     """Test that signup actually adds the participant to the activity"""
     # Arrange
     activity_name = "Programming Class"
-    new_email = "alice@mergington.edu"
+    new_email = "alice_add@mergington.edu"
     
     # Act
     response = client.post(
@@ -46,7 +46,7 @@ def test_signup_nonexistent_activity_returns_404(client):
     """Test that signup fails for non-existent activity"""
     # Arrange
     nonexistent_activity = "Nonexistent Club"
-    student_email = "student@mergington.edu"
+    student_email = "student_fake_404@mergington.edu"
     
     # Act
     response = client.post(
@@ -63,7 +63,7 @@ def test_signup_duplicate_email_returns_400(client):
     """Test that duplicate signup is rejected"""
     # Arrange
     activity_name = "Chess Club"
-    duplicate_email = "bob@mergington.edu"
+    duplicate_email = "bob_dup@mergington.edu"
     
     # Act - First signup
     response1 = client.post(
@@ -86,7 +86,7 @@ def test_signup_with_special_characters_in_email(client):
     """Test signup with email containing special characters"""
     # Arrange
     activity_name = "Gym Class"
-    special_email = "student+tag@mergington.edu"
+    special_email = "student+tag_special@mergington.edu"
     
     # Act
     response = client.post(
@@ -103,7 +103,7 @@ def test_signup_multiple_students_same_activity(client):
     """Test that multiple different students can register for the same activity"""
     # Arrange
     activity_name = "Art Studio"
-    students = ["student1@mergington.edu", "student2@mergington.edu"]
+    students = ["student1_art@mergington.edu", "student2_art@mergington.edu"]
     
     # Act
     for student_email in students:
@@ -122,7 +122,7 @@ def test_signup_multiple_students_same_activity(client):
 def test_signup_different_activities_same_student(client):
     """Test that same student can register for different activities"""
     # Arrange
-    student_email = "versatile@mergington.edu"
+    student_email = "versatile_multi@mergington.edu"
     activities_to_join = ["Chess Club", "Programming Class"]
     
     # Act

@@ -7,7 +7,7 @@ def test_unregister_success(client):
     """Test successful unregistration from an activity"""
     # Arrange
     activity_name = "Chess Club"
-    email = "unregister_user@mergington.edu"
+    email = "unregister_user_success@mergington.edu"
     
     # First signup the user
     client.post(f"/activities/{activity_name}/signup?email={email}")
@@ -29,7 +29,7 @@ def test_unregister_removes_participant(client):
     """Test that unregister actually removes the participant"""
     # Arrange
     activity_name = "Programming Class"
-    email = "alice_unregister@mergington.edu"
+    email = "alice_unregister_remove@mergington.edu"
     
     # Setup: signup user
     client.post(f"/activities/{activity_name}/signup?email={email}")
@@ -53,7 +53,7 @@ def test_unregister_nonexistent_activity_returns_404(client):
     """Test that unregister fails for non-existent activity"""
     # Arrange
     fake_activity = "Fake Club"
-    email = "student@mergington.edu"
+    email = "student_fake_unreg@mergington.edu"
     
     # Act
     response = client.delete(
@@ -70,7 +70,7 @@ def test_unregister_not_registered_returns_400(client):
     """Test that unregister fails for student not in the activity"""
     # Arrange
     activity_name = "Chess Club"
-    unregistered_email = "notregistered@mergington.edu"
+    unregistered_email = "notregistered_unreg@mergington.edu"
     
     # Act
     response = client.delete(
@@ -109,7 +109,7 @@ def test_unregister_initial_participant(client):
 def test_unregister_doesnt_affect_other_activities(client):
     """Test that unregistering from one activity doesn't affect others"""
     # Arrange
-    email = "multi_activity@mergington.edu"
+    email = "multi_activity_unreg@mergington.edu"
     activity1 = "Chess Club"
     activity2 = "Programming Class"
     
@@ -133,7 +133,7 @@ def test_unregister_multiple_times_fails_second_time(client):
     """Test that unregistering twice fails the second time"""
     # Arrange
     activity_name = "Gym Class"
-    email = "repeat_unregister@mergington.edu"
+    email = "repeat_unregister_multiple@mergington.edu"
     
     # Setup: Signup user
     client.post(f"/activities/{activity_name}/signup?email={email}")
